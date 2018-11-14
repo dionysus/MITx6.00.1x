@@ -125,8 +125,67 @@ def hangman(secretWord):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
+    
+    # keep score
+    mistakesMade = 0
+    lettersGuessed = ''
 
-
+    # prompt for guess
+    
+    print('Welcome to the game, Hangman!')
+    print('I am thinking of a word that is ' + str(len(secretWord)) + \
+          'letters long')
+    print('---------------')
+    
+    while mistakesMade < 8 and not isWordGuessed(secretWord, lettersGuessed):
+        
+        availableLetters = getAvailableLetters(lettersGuessed)
+        
+        print('You have ' + str((8 - mistakesMade)) + ' guesses left')
+        print('Available letters: ' + str(availableLetters))
+        guess = input('Please guess a letter: ')
+        
+        # guess is not single letter
+        if not guess.isalpha() and len(guess) == 1:
+            print('Please guess a single letter: ' + \
+                          str(getGuessedWord(secretWord, lettersGuessed)))
+        else:
+            guess = guess.lower()
+        
+            # already guessed
+            if guess in lettersGuessed:
+                print('Oops!  You\'ve already guessed that letter: ' + \
+                          str(getGuessedWord(secretWord, lettersGuessed)))
+            else:
+                lettersGuessed += guess
+            
+                # guess is right
+                if guess in secretWord:
+                    print('Good Guess: ' + \
+                          str(getGuessedWord(secretWord, lettersGuessed)))
+        
+                # guess is wrong
+                else:
+                    mistakesMade += 1
+                    print('Oops!  That letter is not in my word: ' + \
+                          str(getGuessedWord(secretWord, lettersGuessed)))
+        
+        print('---------------')
+        
+    if mistakesMade == 8:
+        print ('Sorry, you ran out of guesses. The word was ' \
+               + str(secretWord) + '.')
+    else:
+        print ('Congratulations,  You won!')
+        
+        
+    # update guesses left
+    
+    # update available letters
+    
+    # update letters guessed
+    
+    # availableLetters
 
 
 
