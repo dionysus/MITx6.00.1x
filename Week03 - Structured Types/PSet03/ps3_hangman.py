@@ -49,8 +49,19 @@ def isWordGuessed(secretWord, lettersGuessed):
     lettersGuessed: list, what letters have been guessed so far
     returns: boolean, True if all the letters of secretWord are in lettersGuessed;
       False otherwise
+      
+    >>> print(isWordGuessed('apple', ['e', 'i', 'k', 'p', 'r', 's']))
+    False
+
+    >>> print(isWordGuessed('apple', ['a', 'l', 'e', 'p']))
+    True
     '''
-    # FILL IN YOUR CODE HERE...
+    
+    for letter in secretWord:
+        if letter not in lettersGuessed:
+            return False
+    
+    return True
 
 
 
